@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/react")
+    @Scripts.Render("~/bundles/immutable")
+    <script src="@Url.Content("~/Scripts/Jsx/Application.jsx")"></script>
+    <script src="@Url.Content("~/Scripts/Jsx/Layout.jsx")"></script>
+    <script src="@Url.Content("~/Scripts/Jsx/Home.jsx")"></script>
+    <script src="@Url.Content("~/Scripts/Jsx/NotFound.jsx")"></script>
+</head>
+<body>
+    @RenderBody()
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @*<script>
+        // React v0.12.1 to v0.10.0 adapter
+        // Allows the use of React v0.10.0 as if it was v0.12.1
+        if (React.version == "0.10.0" && typeof React.realVersion == "undefined") {
+            React.version = "0.12.1";
+            React.realVersion = "0.10.0";
+            React.render = React.renderComponent;
+            React.createElement = function() {
+                var args = [];
+                Array.prototype.push.apply(args, arguments);
+                var name = args.shift(),
+                    obj = React.DOM,
+                    fn = obj[name];
+                if (!fn) {
+                    obj = window;
+                    fn = name; // in this case, `name` contains a function
+                }
+                return fn.apply(obj, args);
+            };
+        }
+    </script>*@
+    @Html.ReactInitJavaScript()
+</body>
+</html>
