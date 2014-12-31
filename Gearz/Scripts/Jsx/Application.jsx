@@ -1,6 +1,4 @@
-﻿
-
-var Application = React.createClass({
+﻿var Application = React.createClass({
     handleAppData: function(data) {
         mergeDeep(window.app, data);
     },
