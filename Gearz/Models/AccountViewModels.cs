@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Masb.Gearz.Models
+namespace Gearz.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

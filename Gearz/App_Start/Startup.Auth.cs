@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using Masb.Gearz.Models;
+using Gearz.Models;
 
-namespace Masb.Gearz
+namespace Gearz
 {
     public partial class Startup
     {

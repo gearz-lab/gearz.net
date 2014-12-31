@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace Masb.Gearz
+namespace Gearz
 {
     public static class WebApiConfig
     {

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Masb.Gearz
+namespace Gearz
 {
     public class BundleConfig
     {

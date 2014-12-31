@@ -1,8 +1,8 @@
 using React;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Masb.Gearz.ReactConfig), "Configure")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Gearz.ReactConfig), "Configure")]
 
-namespace Masb.Gearz
+namespace Gearz
 {
     public static class ReactConfig
     {

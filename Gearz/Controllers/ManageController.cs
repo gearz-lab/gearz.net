@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Masb.Gearz.Models;
+using Gearz.Models;
 
-namespace Masb.Gearz.Controllers
+namespace Gearz.Controllers
 {
     [Authorize]
     public class ManageController : Controller

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace Masb.Gearz.Models
+namespace Gearz.Models
 {
     public class IndexViewModel
     {

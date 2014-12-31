@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Masb.Gearz.Startup))]
-namespace Masb.Gearz
+[assembly: OwinStartupAttribute(typeof(Gearz.Startup))]
+namespace Gearz
 {
     public partial class Startup
     {

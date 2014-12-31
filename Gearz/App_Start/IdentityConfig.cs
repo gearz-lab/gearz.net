@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using Masb.Gearz.Models;
+using Gearz.Models;
 
-namespace Masb.Gearz
+namespace Gearz
 {
     public class EmailService : IIdentityMessageService
     {

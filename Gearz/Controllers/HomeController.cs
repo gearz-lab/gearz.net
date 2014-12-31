@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Masb.Gearz.Controllers
+namespace Gearz.Controllers
 {
     public class HomeController : Controller
     {
