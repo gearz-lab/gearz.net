@@ -1,10 +1,5 @@
 ﻿var HomePage = React.createClass({
     render: function() {
-        var layout = this.props.layout || function(children) {
-            return <div>
-                {children}
-            </div>
-        };
         var children = [
 
 			<div className="jumbotron">
@@ -38,6 +33,6 @@
 			</div>
 
 		];
-        return layout(children);
+        return this.props.layout(children);
     }
 });

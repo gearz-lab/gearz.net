@@ -23,6 +23,7 @@ namespace Gearz
                 .AddScript("~/Scripts/jsx/Application.jsx")
                 .AddScript("~/Scripts/jsx/Layout.jsx")
                 .AddScript("~/Scripts/jsx/NotFound.jsx")
+                .AddScript("~/Scripts/jsx/HeaderLink.jsx")
                 .AddScript("~/Scripts/jsx/Home.jsx");
         }
     }
