@@ -1,2 +1,23 @@
-﻿@model object
-@Html.React("Application", this.Model)
+﻿@using Newtonsoft.Json
+@model Gearz.Models.ApplicationViewModel
+<script>
+    window.stores = {};
+    window.stores.App = @(Html.Raw(JsonConvert.SerializeObject(this.Model.App)));
+    @{
+        int appMetadataVersion;
+        var cookie = this.Request.Cookies["app-metadata-version"];
+        if (cookie == null || !int.TryParse(cookie.Value, out appMetadataVersion) || appMetadataVersion < 1)
+        {
+            <text>
+    window.stores.Meta = @(Html.Raw(JsonConvert.SerializeObject(this.Model.Meta)));
+            </text>
+        }
+    }
+</script>
+@Html.React("Application", this.Model, "div", "rootComponent")
+<script>
+    function Render() {
+        React.render(React.createElement(Application, { App: window.stores.App, Meta: window.stores.Meta }), document.getElementById("rootComponent"));
+    }
+    Render();
+</script>

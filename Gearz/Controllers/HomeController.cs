@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Gearz.Models;
 
 namespace Gearz.Controllers
 {
@@ -10,44 +11,45 @@ namespace Gearz.Controllers
     {
         public ActionResult Index()
         {
-            var data = new
+            var data = new ApplicationViewModel
                        {
-                           app = new
+                           App = new
                                  {
                                      name = "Application name",
                                      year = DateTime.Now.Year,
                                      company = "My ASP.NET Application",
                                      location = "Home",
                                  },
-                           areas = new
-                                   {
-                                       root = new
+                           Meta = new
+                                  {
+                                      areas = new
                                               {
-                                                  home = new
+                                                  root = new
                                                          {
-                                                             index = new
-                                                                     {
-                                                                         url =
-                                                                             Url.Action("Index", "Home", new { area = "" }),
-                                                                         title = "Home",
-                                                                         location = "Home"
-                                                                     },
-                                                             about = new
-                                                                     {
-                                                                         url =
-                                                                             Url.Action("About", "Home", new { area = "" }),
-                                                                         title = "About",
-                                                                         location = "About"
-                                                                     },
-                                                             contact = new
-                                                                       {
-                                                                           url = Url.Action("Contact", "Home", new { area = "" }),
-                                                                           title = "Contact",
-                                                                           location = "Contact"
-                                                                       },
+                                                             home = new
+                                                                    {
+                                                                        index = new
+                                                                                {
+                                                                                    url = Url.Action("Index", "Home", new {area = ""}),
+                                                                                    title = "Home",
+                                                                                    location = "Home"
+                                                                                },
+                                                                        about = new
+                                                                                {
+                                                                                    url = Url.Action("About", "Home", new {area = ""}),
+                                                                                    title = "About",
+                                                                                    location = "About"
+                                                                                },
+                                                                        contact = new
+                                                                                  {
+                                                                                      url = Url.Action("Contact", "Home", new {area = ""}),
+                                                                                      title = "Contact",
+                                                                                      location = "Contact"
+                                                                                  },
+                                                                    }
                                                          }
                                               }
-                                   }
+                                  }
                        };
 
             if (this.Request.IsAjaxRequest())
