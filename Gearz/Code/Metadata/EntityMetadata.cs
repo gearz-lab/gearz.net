@@ -6,6 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using Gearz.Code.Helpers;
+using Newtonsoft.Json;
 
 namespace Gearz.Code.Metadata
 {
@@ -27,6 +28,7 @@ namespace Gearz.Code.Metadata
         /// <summary>
         /// Entity type of which this class contains metadata
         /// </summary>
+        [JsonIgnore]
         public Type EntityType { get; private set; }
 
         /// <summary>
