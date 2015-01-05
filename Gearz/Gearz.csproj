@@ -218,7 +218,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Code\FluentMetadata.cs" />
+    <Compile Include="Code\Helpers\ExpressionHelper.cs" />
+    <Compile Include="Code\Metadata\EntityMetadata.cs" />
+    <Compile Include="Code\Metadata\FluentMetadataProvider.cs" />
+    <Compile Include="Code\Metadata\IMetadataProvider.cs" />
+    <Compile Include="Code\Metadata\MetadataContext.cs" />
+    <Compile Include="Code\Metadata\PropertyMetadata.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
