@@ -198,7 +198,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\Jsx\Application.jsx" />
-    <Content Include="Scripts\Jsx\Home.jsx" />
+    <Content Include="Scripts\Jsx\ContactPage.jsx" />
+    <Content Include="Scripts\Jsx\HomePage.jsx" />
     <Content Include="Scripts\Jsx\Layout.jsx" />
     <Content Include="Scripts\Jsx\HeaderLink.jsx" />
     <Content Include="Scripts\Jsx\NotFound.jsx" />

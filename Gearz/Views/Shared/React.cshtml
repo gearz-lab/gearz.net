@@ -3,6 +3,7 @@
 <script>
     window.stores = {};
     window.stores.App = @(Html.Raw(JsonConvert.SerializeObject(this.Model.App)));
+    window.stores.Data = @(Html.Raw(JsonConvert.SerializeObject(this.Model.Data)));
     @{
         int appMetadataVersion;
         var cookie = this.Request.Cookies["app-metadata-version"];
@@ -10,14 +11,38 @@
         {
             <text>
     window.stores.Meta = @(Html.Raw(JsonConvert.SerializeObject(this.Model.Meta)));
-            </text>
+    </text>
         }
     }
 </script>
-@Html.React("Application", this.Model, "div", "rootComponent")
+@{
+    const string appComponentName = "Application";
+    const string appElementId = "rootComponent";
+}
+@{
+#if DEBUG
+    const bool DEBUG = true;
+#else
+    const bool DEBUG = false;
+#endif
+}
+@if (!DEBUG)
+{
+    @:@Html.React(appComponentName, this.Model, "div", appElementId)
+}
+else
+{
+    <div id="@appElementId"></div>
+}
 <script>
     function Render() {
-        React.render(React.createElement(Application, { App: window.stores.App, Meta: window.stores.Meta }), document.getElementById("rootComponent"));
-    }
-    Render();
+        React.render(
+            React.createElement(@(appComponentName), {
+                App: window.stores.App,
+                Meta: window.stores.Meta,
+                Data: window.stores.Data
+            }),
+            document.getElementById("@(appElementId)"));
+        }
+        Render();
 </script>

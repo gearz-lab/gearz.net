@@ -24,7 +24,8 @@ namespace Gearz
                 .AddScript("~/Scripts/jsx/Layout.jsx")
                 .AddScript("~/Scripts/jsx/NotFound.jsx")
                 .AddScript("~/Scripts/jsx/HeaderLink.jsx")
-                .AddScript("~/Scripts/jsx/Home.jsx");
+                .AddScript("~/Scripts/jsx/HomePage.jsx")
+                .AddScript("~/Scripts/jsx/ContactPage.jsx");
         }
     }
 }

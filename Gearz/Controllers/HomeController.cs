@@ -11,65 +11,81 @@ namespace Gearz.Controllers
     {
         public ActionResult Index()
         {
-            var data = new ApplicationViewModel
-                       {
-                           App = new
-                                 {
-                                     name = "Application name",
-                                     year = DateTime.Now.Year,
-                                     company = "My ASP.NET Application",
-                                     location = "Home",
-                                 },
-                           Meta = new
-                                  {
-                                      areas = new
-                                              {
-                                                  root = new
-                                                         {
-                                                             home = new
-                                                                    {
-                                                                        index = new
-                                                                                {
-                                                                                    url = Url.Action("Index", "Home", new {area = ""}),
-                                                                                    title = "Home",
-                                                                                    location = "Home"
-                                                                                },
-                                                                        about = new
-                                                                                {
-                                                                                    url = Url.Action("About", "Home", new {area = ""}),
-                                                                                    title = "About",
-                                                                                    location = "About"
-                                                                                },
-                                                                        contact = new
-                                                                                  {
-                                                                                      url = Url.Action("Contact", "Home", new {area = ""}),
-                                                                                      title = "Contact",
-                                                                                      location = "Contact"
-                                                                                  },
-                                                                    }
-                                                         }
-                                              }
-                                  }
-                       };
+            var data = this.ApplicationViewModel();
 
             if (this.Request.IsAjaxRequest())
                 return this.Json(data, JsonRequestBehavior.AllowGet);
 
-            return View("React", data);
+            return this.View("React", data);
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            var data = this.ApplicationViewModel();
 
-            return View();
+            data.Data.Message = "Your application description page.";
+
+            if (this.Request.IsAjaxRequest())
+                return this.Json(data, JsonRequestBehavior.AllowGet);
+
+            return this.View("React", data);
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            var data = this.ApplicationViewModel();
 
-            return View();
+            data.Data.Message = "Your contact page.";
+
+            if (this.Request.IsAjaxRequest())
+                return this.Json(data, JsonRequestBehavior.AllowGet);
+
+            return this.View("React", data);
+        }
+
+        private ApplicationViewModel ApplicationViewModel()
+        {
+            var data = new ApplicationViewModel
+            {
+                App = new
+                {
+                    name = "Application name",
+                    year = DateTime.Now.Year,
+                    company = "My ASP.NET Application",
+                    location = "Home",
+                },
+                Meta = new
+                {
+                    areas = new
+                    {
+                        root = new
+                        {
+                            home = new
+                            {
+                                index = new
+                                {
+                                    url = Url.Action("Index", "Home", new { area = "" }),
+                                    title = "Home",
+                                    location = "Home"
+                                },
+                                about = new
+                                {
+                                    url = Url.Action("About", "Home", new { area = "" }),
+                                    title = "About",
+                                    location = "About"
+                                },
+                                contact = new
+                                {
+                                    url = Url.Action("Contact", "Home", new { area = "" }),
+                                    title = "Contact",
+                                    location = "Contact"
+                                },
+                            }
+                        }
+                    }
+                }
+            };
+            return data;
         }
     }
 }
