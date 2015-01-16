@@ -1,17 +1,29 @@
 ﻿@using Newtonsoft.Json
-@model Gearz.Models.ApplicationViewModel
+@model Gearz.Models.ApplicationClientModel
 <script>
     window.stores = {};
-    window.stores.App = @(Html.Raw(JsonConvert.SerializeObject(this.Model.App)));
-    window.stores.Data = @(Html.Raw(JsonConvert.SerializeObject(this.Model.Data)));
+    window.stores.appState = @(Html.Raw(JsonConvert.SerializeObject(this.Model.AppState)));
+    window.stores.appData = @(Html.Raw(JsonConvert.SerializeObject(this.Model.AppData)));
     @{
         int appMetadataVersion;
-        var cookie = this.Request.Cookies["app-metadata-version"];
+        var cookie = this.Request.Cookies["gzAMV"]; // application metadata versions
         if (cookie == null || !int.TryParse(cookie.Value, out appMetadataVersion) || appMetadataVersion < 1)
         {
+            // this cookie indicates what metadata the client has cached,
+            // so that it does not need to be sent again
+            // TODO: the needed metadata must be indicated by the controller, using the full version name of a registered version
+            //      gearzContext.RequireMetadata("my-app-id en-US v1.0.0")
+            // TODO: versions can be registered statically in the application start, or dinamically in a database (through IAppVersionProvider)
+            //      use sematic versioning for version numbers, so that, once a version is released, the metadata can never change
+            this.Response.Cookies.Set(new HttpCookie(
+                "gzAMV",
+                "my-app-id en-US v0.1.0, my-mod-id en-US v0.1.0")
+                {
+                    Expires = DateTime.MaxValue
+                });
             <text>
-    window.stores.Meta = @(Html.Raw(JsonConvert.SerializeObject(this.Model.Meta)));
-    </text>
+    window.stores.appMeta = @(Html.Raw(JsonConvert.SerializeObject(this.Model.AppMeta)));
+            </text>
         }
     }
 </script>
@@ -38,9 +50,9 @@ else
     function Render() {
         React.render(
             React.createElement(@(appComponentName), {
-                App: window.stores.App,
-                Meta: window.stores.Meta,
-                Data: window.stores.Data
+                appState: window.stores.appState,
+                appMeta: window.stores.appMeta,
+                appData: window.stores.appData
             }),
             document.getElementById("@(appElementId)"));
         }

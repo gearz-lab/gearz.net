@@ -6,19 +6,21 @@
 
 var Layout = React.createClass({
     render: function() {
-        debugger;
+        var appData = this.props.appData,
+            appMeta = this.props.appMeta,
+            areas = appMeta.areas;
         return (
             <div>
                 <div className="navbar navbar-inverse navbar-fixed-top">
                     <div className="container">
                         <div className="navbar-header">
-                            <a href={this.props.areas.root.home.index.url} className="navbar-brand">{this.props.app.name}</a>
+                            <a href={areas.root.home.index.url} className="navbar-brand">{this.props.appData.name}</a>
                         </div>
                         <div className="navbar-collapse collapse">
                             <ul className="nav navbar-nav">
-                                <li><HeaderLink data={this.props.areas.root.home.index} app={this.props.app} onAppData={this.props.onAppData} /></li>
-                                <li><HeaderLink data={this.props.areas.root.home.about} app={this.props.app} onAppData={this.props.onAppData} /></li>
-                                <li><HeaderLink data={this.props.areas.root.home.contact} app={this.props.app} onAppData={this.props.onAppData} /></li>
+                                <li><HeaderLink data={areas.root.home.index} appData={appData} onAppData={this.props.onAppData} /></li>
+                                <li><HeaderLink data={areas.root.home.about} appData={appData} onAppData={this.props.onAppData} /></li>
+                                <li><HeaderLink data={areas.root.home.contact} appData={appData} onAppData={this.props.onAppData} /></li>
                             </ul>
                             <_LoginPartial />
                         </div>
@@ -28,7 +30,7 @@ var Layout = React.createClass({
                     {this.props.children}
                     <hr />
                     <footer>
-                        <p>&copy; {this.props.app.year} - {this.props.app.company}</p>
+                        <p>&copy; {appMeta.app.year} - {appMeta.app.company}</p>
                     </footer>
                 </div>
             </div>

@@ -1,16 +1,20 @@
 ﻿var Application = React.createClass({
     handleAppData: function(data) {
         for (var k in data)
-            window.stores.App[k] = data[k];
+            window.stores.appData[k] = data[k];
         Render();
     },
     getInitialState: function() {
-        var _this = this;
+        var _this = this,
+            appVer = this.props.appState.Versions.app,
+            modVer = this.props.appState.Versions.module,
+            appMeta = this.props.appMeta[appVer],
+            appData = this.props.appData;
         return {
                 layout: React.createClass({
                     render: function() {
                         return (
-                                <Layout areas={_this.props.Meta.areas} app={_this.props.App} onAppData={_this.handleAppData}>
+                                <Layout appMeta={appMeta} appData={appData} onAppData={_this.handleAppData}>
                                     {this.props.children}
                                 </Layout>
                             );
@@ -19,10 +23,10 @@
             };
     },
     render: function() {
-        var location = this.props.App.location;
+        var location = this.props.appData.location;
         return (
             location == "Home" ?    <HomePage layout={this.state.layout} /> :
-            location == "Contact" ? <ContactPage layout={this.state.layout} data={this.props.Data} /> :
+            location == "Contact" ? <ContactPage layout={this.state.layout} data={this.props.appData.pageData} /> :
                                     <NotFound layout={this.state.layout} />
 		);
     }

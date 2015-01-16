@@ -208,6 +208,7 @@
     <Content Include="Scripts\react-0.12.1.min.js" />
     <Content Include="Scripts\react-with-addons-0.12.1.js" />
     <Content Include="Scripts\react-with-addons-0.12.1.min.js" />
+    <Content Include="Scripts\gzRouting.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
@@ -235,7 +236,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ApplicationViewModel.cs" />
+    <Compile Include="Models\ApplicationClientModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

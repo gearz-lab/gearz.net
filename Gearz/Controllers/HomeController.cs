@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using Gearz.Models;
 
 namespace Gearz.Controllers
@@ -12,6 +13,7 @@ namespace Gearz.Controllers
         public ActionResult Index()
         {
             var data = this.ApplicationViewModel();
+            data.AppData.location = "Home";
 
             if (this.Request.IsAjaxRequest())
                 return this.Json(data, JsonRequestBehavior.AllowGet);
@@ -23,7 +25,11 @@ namespace Gearz.Controllers
         {
             var data = this.ApplicationViewModel();
 
-            data.Data.Message = "Your application description page.";
+            data.AppData.location = "About";
+            data.AppData.pageData = new
+                {
+                    message = "Your application description page.",
+                };
 
             if (this.Request.IsAjaxRequest())
                 return this.Json(data, JsonRequestBehavior.AllowGet);
@@ -35,7 +41,11 @@ namespace Gearz.Controllers
         {
             var data = this.ApplicationViewModel();
 
-            data.Data.Message = "Your contact page.";
+            data.AppData.location = "Contact";
+            data.AppData.pageData = new
+                {
+                    message = "Your contact page.",
+                };
 
             if (this.Request.IsAjaxRequest())
                 return this.Json(data, JsonRequestBehavior.AllowGet);
@@ -43,48 +53,82 @@ namespace Gearz.Controllers
             return this.View("React", data);
         }
 
-        private ApplicationViewModel ApplicationViewModel()
+        private ApplicationClientModel ApplicationViewModel()
         {
-            var data = new ApplicationViewModel
-            {
-                App = new
+            var data = new ApplicationClientModel
                 {
-                    name = "Application name",
-                    year = DateTime.Now.Year,
-                    company = "My ASP.NET Application",
-                    location = "Home",
-                },
-                Meta = new
-                {
-                    areas = new
-                    {
-                        root = new
+                    AppMeta = new Dictionary<string, object>
                         {
-                            home = new
                             {
-                                index = new
-                                {
-                                    url = Url.Action("Index", "Home", new { area = "" }),
-                                    title = "Home",
-                                    location = "Home"
-                                },
-                                about = new
-                                {
-                                    url = Url.Action("About", "Home", new { area = "" }),
-                                    title = "About",
-                                    location = "About"
-                                },
-                                contact = new
-                                {
-                                    url = Url.Action("Contact", "Home", new { area = "" }),
-                                    title = "Contact",
-                                    location = "Contact"
-                                },
+                                "my-app-id en-US v0.1.0",
+                                new AppMetaClientModel
+                                    {
+                                        routes = RouteTable.Routes.OfType<Route>().Select(r => new RouteModel(r)),
+                                        app = new
+                                            {
+                                                name = "Application name",
+                                                year = DateTime.Now.Year,
+                                                company = "My ASP.NET Application"
+                                            },
+                                        areas = new
+                                            {
+                                                root = new
+                                                    {
+                                                        home = new
+                                                            {
+                                                                index = new
+                                                                    {
+                                                                        url =
+                                                                            Url.Action(
+                                                                                "Index",
+                                                                                "Home",
+                                                                                new { area = "" }),
+                                                                        title = "Home",
+                                                                        location = "Home"
+                                                                    },
+                                                                about = new
+                                                                    {
+                                                                        url =
+                                                                            Url.Action(
+                                                                                "About",
+                                                                                "Home",
+                                                                                new { area = "" }),
+                                                                        title = "About",
+                                                                        location = "About"
+                                                                    },
+                                                                contact = new
+                                                                    {
+                                                                        url =
+                                                                            Url.Action(
+                                                                                "Contact",
+                                                                                "Home",
+                                                                                new { area = "" }),
+                                                                        title = "Contact",
+                                                                        location = "Contact"
+                                                                    },
+                                                            }
+                                                    }
+                                            }
+                                    }
                             }
                         }
-                    }
-                }
-            };
+                };
+
+            data.AppState.Versions = new Dictionary<string, string>
+                {
+                    // when the user changes application settings
+                    // that alternate between monolithic modules,
+                    // this can be made through this property:
+                    //  - the key is the module name
+                    //  - the value is the full module version to be used
+                    // these will be used by the Application component
+                    // to get the correct metadata and pass into other
+                    // subcomponents (e.g. MetaPage components and derivations,
+                    // and all other sorts of page components)
+                    { "app", "my-app-id en-US v0.1.0" },
+                    { "module", "my-mod-id en-US v0.1.0" }
+                };
+
             return data;
         }
     }
