@@ -13,7 +13,7 @@ namespace Gearz.Controllers
         public ActionResult Index()
         {
             var data = this.ApplicationViewModel();
-            data.AppData.location = "Home";
+            data.PageData.location = "Home";
 
             if (this.Request.IsAjaxRequest())
                 return this.Json(data, JsonRequestBehavior.AllowGet);
@@ -25,8 +25,8 @@ namespace Gearz.Controllers
         {
             var data = this.ApplicationViewModel();
 
-            data.AppData.location = "About";
-            data.AppData.pageData = new
+            data.PageData.location = "About";
+            data.PageData.pageData = new
                 {
                     message = "Your application description page.",
                 };
@@ -41,8 +41,8 @@ namespace Gearz.Controllers
         {
             var data = this.ApplicationViewModel();
 
-            data.AppData.location = "Contact";
-            data.AppData.pageData = new
+            data.PageData.location = "Contact";
+            data.PageData.pageData = new
                 {
                     message = "Your contact page.",
                 };
@@ -120,11 +120,12 @@ namespace Gearz.Controllers
                     // that alternate between monolithic modules,
                     // this can be made through this property:
                     //  - the key is the module name
-                    //  - the value is the full module version to be used
+                    //  - the value is the unique module version identifier to be used
                     // these will be used by the Application component
                     // to get the correct metadata and pass into other
                     // subcomponents (e.g. MetaPage components and derivations,
                     // and all other sorts of page components)
+                    // TODO: map the module version identifier to an integer value, to make the gzAMV cookie smaller
                     { "app", "my-app-id en-US v0.1.0" },
                     { "module", "my-mod-id en-US v0.1.0" }
                 };

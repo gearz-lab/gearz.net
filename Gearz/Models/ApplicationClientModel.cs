@@ -8,7 +8,7 @@ namespace Gearz.Models
     {
         public ApplicationClientModel()
         {
-            this.AppData = new ExpandoObject();
+            this.PageData = new ExpandoObject();
             this.AppState = new AppStateClientModel();
         }
 
@@ -17,9 +17,9 @@ namespace Gearz.Models
         /// </summary>
         public Dictionary<string, dynamic> AppMeta { get; set; }
 
-        public dynamic AppData { get; private set; }
-
         public AppStateClientModel AppState { get; private set; }
+
+        public dynamic PageData { get; private set; }
     }
 
     public class AppStateClientModel

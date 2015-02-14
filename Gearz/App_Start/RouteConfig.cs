@@ -5,6 +5,8 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Gearz
 {
@@ -28,6 +30,53 @@ namespace Gearz
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }
+    }
+
+    public class UrlParameterJsonConverter : JsonConverter
+    {
+        public static readonly UrlParameterJsonConverter Instance = new UrlParameterJsonConverter();
+
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            if (value == UrlParameter.Optional)
+                writer.WriteNull();
+
+            throw new Exception("Unsupported UrlParameter");
+        }
+
+        // Other JsonConverterMethods
+        public override bool CanConvert(Type objectType)
+        {
+            return objectType == typeof(UrlParameter);
+        }
+
+        public override bool CanWrite { get { return true; } }
+        public override bool CanRead { get { return false; } }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public static class JsonHelper
+    {
+        public static string ToJson(object obj)
+        {
+            return JsonConvert.SerializeObject(
+                obj,
+                FLAGS.DEBUG ? Formatting.Indented : Formatting.None,
+                UrlParameterJsonConverter.Instance);
+        }
+    }
+
+    public static class FLAGS
+    {
+#if DEBUG
+        public static readonly bool DEBUG = true;
+#else
+        public static readonly bool DEBUG = false;
+#endif
     }
 
     /// <summary>

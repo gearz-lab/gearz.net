@@ -2,8 +2,8 @@
 @model Gearz.Models.ApplicationClientModel
 <script>
     window.stores = {};
-    window.stores.appState = @(Html.Raw(JsonConvert.SerializeObject(this.Model.AppState)));
-    window.stores.appData = @(Html.Raw(JsonConvert.SerializeObject(this.Model.AppData)));
+    window.stores.appState = @(Html.Raw(JsonHelper.ToJson(this.Model.AppState)));
+    window.stores.appData = @(Html.Raw(JsonHelper.ToJson(this.Model.AppData)));
     @{
         int appMetadataVersion;
         var cookie = this.Request.Cookies["gzAMV"]; // application metadata versions
@@ -22,7 +22,7 @@
                     Expires = DateTime.MaxValue
                 });
             <text>
-    window.stores.appMeta = @(Html.Raw(JsonConvert.SerializeObject(this.Model.AppMeta)));
+    window.stores.appMeta = @Html.Raw(JsonHelper.ToJson(this.Model.AppMeta));
             </text>
         }
     }
@@ -31,14 +31,7 @@
     const string appComponentName = "Application";
     const string appElementId = "rootComponent";
 }
-@{
-#if DEBUG
-    const bool DEBUG = true;
-#else
-    const bool DEBUG = false;
-#endif
-}
-@if (!DEBUG)
+@if (!FLAGS.DEBUG)
 {
     @:@Html.React(appComponentName, this.Model, "div", appElementId)
 }
