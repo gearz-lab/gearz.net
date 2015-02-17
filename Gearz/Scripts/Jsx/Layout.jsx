@@ -6,7 +6,7 @@
 
 var Layout = React.createClass({
     render: function() {
-        var appData = this.props.appData,
+        var viewData = this.props.viewData,
             appMeta = this.props.appMeta,
             areas = appMeta.areas;
         return (
@@ -14,13 +14,13 @@ var Layout = React.createClass({
                 <div className="navbar navbar-inverse navbar-fixed-top">
                     <div className="container">
                         <div className="navbar-header">
-                            <a href={areas.root.home.index.url} className="navbar-brand">{this.props.appData.name}</a>
+                            <a href={areas.root.home.index.url} className="navbar-brand">{this.props.viewData.name}</a>
                         </div>
                         <div className="navbar-collapse collapse">
                             <ul className="nav navbar-nav">
-                                <li><HeaderLink data={areas.root.home.index} appData={appData} onAppData={this.props.onAppData} /></li>
-                                <li><HeaderLink data={areas.root.home.about} appData={appData} onAppData={this.props.onAppData} /></li>
-                                <li><HeaderLink data={areas.root.home.contact} appData={appData} onAppData={this.props.onAppData} /></li>
+                                <li><HeaderLink data={areas.root.home.index} viewData={viewData} onAppData={this.props.onAppData} /></li>
+                                <li><HeaderLink data={areas.root.home.about} viewData={viewData} onAppData={this.props.onAppData} /></li>
+                                <li><HeaderLink data={areas.root.home.contact} viewData={viewData} onAppData={this.props.onAppData} /></li>
                             </ul>
                             <_LoginPartial />
                         </div>

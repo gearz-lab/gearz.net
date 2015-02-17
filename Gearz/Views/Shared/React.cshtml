@@ -3,7 +3,7 @@
 <script>
     window.stores = {};
     window.stores.appState = @(Html.Raw(JsonHelper.ToJson(this.Model.AppState)));
-    window.stores.appData = @(Html.Raw(JsonHelper.ToJson(this.Model.AppData)));
+    window.stores.viewData = @(Html.Raw(JsonHelper.ToJson(this.Model.ViewData)));
     @{
         int appMetadataVersion;
         var cookie = this.Request.Cookies["gzAMV"]; // application metadata versions
@@ -45,7 +45,7 @@ else
             React.createElement(@(appComponentName), {
                 appState: window.stores.appState,
                 appMeta: window.stores.appMeta,
-                appData: window.stores.appData
+                viewData: window.stores.viewData
             }),
             document.getElementById("@(appElementId)"));
         }

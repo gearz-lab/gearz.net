@@ -8,7 +8,7 @@ namespace Gearz.Models
     {
         public ApplicationClientModel()
         {
-            this.PageData = new ExpandoObject();
+            this.ViewData = new ExpandoObject();
             this.AppState = new AppStateClientModel();
         }
 
@@ -17,9 +17,16 @@ namespace Gearz.Models
         /// </summary>
         public Dictionary<string, dynamic> AppMeta { get; set; }
 
+        /// <summary>
+        /// Gets or sets global application state that is independent from the current view.
+        /// (e.g. application settings)
+        /// </summary>
         public AppStateClientModel AppState { get; private set; }
 
-        public dynamic PageData { get; private set; }
+        /// <summary>
+        /// Gets or sets the current view data.
+        /// </summary>
+        public dynamic ViewData { get; private set; }
     }
 
     public class AppStateClientModel

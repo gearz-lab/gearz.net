@@ -1,7 +1,7 @@
 ﻿var Application = React.createClass({
-    handleAppData: function(data) {
+    handleViewData: function(data) {
         for (var k in data)
-            window.stores.appData[k] = data[k];
+            window.stores.viewData[k] = data[k];
         Render();
     },
     getInitialState: function() {
@@ -9,12 +9,12 @@
             appVer = this.props.appState.Versions.app,
             modVer = this.props.appState.Versions.module,
             appMeta = this.props.appMeta[appVer],
-            appData = this.props.appData;
+            viewData = this.props.viewData;
         return {
                 layout: React.createClass({
                     render: function() {
                         return (
-                                <Layout appMeta={appMeta} appData={appData} onAppData={_this.handleAppData}>
+                                <Layout appMeta={appMeta} viewData={viewData} onAppData={_this.handleAppData}>
                                     {this.props.children}
                                 </Layout>
                             );
@@ -23,10 +23,10 @@
             };
     },
     render: function() {
-        var location = this.props.appData.location;
+        var location = this.props.viewData.location;
         return (
             location == "Home" ?    <HomePage layout={this.state.layout} /> :
-            location == "Contact" ? <ContactPage layout={this.state.layout} data={this.props.appData.pageData} /> :
+            location == "Contact" ? <ContactPage layout={this.state.layout} data={this.props.viewData.pageData} /> :
                                     <NotFound layout={this.state.layout} />
 		);
     }
