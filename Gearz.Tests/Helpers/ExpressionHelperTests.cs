@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Gearz.Code.Helpers;
+using Gearz.Core.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Gearz.Tests.Helpers
