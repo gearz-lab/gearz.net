@@ -13,7 +13,7 @@ namespace Gearz.Controllers
         public ActionResult Index()
         {
             var data = this.ApplicationViewModel();
-            data.PageData.location = "Home";
+            data.ViewData.location = "Home";
 
             if (this.Request.IsAjaxRequest())
                 return this.Json(data, JsonRequestBehavior.AllowGet);
@@ -25,8 +25,8 @@ namespace Gearz.Controllers
         {
             var data = this.ApplicationViewModel();
 
-            data.PageData.location = "About";
-            data.PageData.pageData = new
+            data.ViewData.location = "About";
+            data.ViewData.pageData = new
                 {
                     message = "Your application description page.",
                 };
@@ -41,8 +41,8 @@ namespace Gearz.Controllers
         {
             var data = this.ApplicationViewModel();
 
-            data.PageData.location = "Contact";
-            data.PageData.pageData = new
+            data.ViewData.location = "Contact";
+            data.ViewData.pageData = new
                 {
                     message = "Your contact page.",
                 };

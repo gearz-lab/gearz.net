@@ -40,8 +40,8 @@ namespace Gearz
         {
             if (value == UrlParameter.Optional)
                 writer.WriteNull();
-
-            throw new Exception("Unsupported UrlParameter");
+            else
+                throw new Exception("Unsupported UrlParameter");
         }
 
         // Other JsonConverterMethods

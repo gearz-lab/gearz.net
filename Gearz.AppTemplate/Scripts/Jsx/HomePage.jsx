@@ -4,9 +4,13 @@
         var result = (
             <Layout>
                 <div className="jumbotron">
-                    <h1>ASP.NET</h1>
+                    <h1>ASP.NET with Gearz</h1>
                     <p className="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-                    <p><a href="http://asp.net" className="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+                    <p className="lead">Gearz is a free web framework for building even greater Web sites and Web applications using Facebook ReactJS, CSS and JavaScript.</p>
+                    <p>
+						<a style={{margin: "10px"}} href="https://github.com/gearz-lab/gearz.net" className="btn btn-primary btn-lg">Learn more about Gearz &raquo;</a>
+						<a href="http://asp.net" className="btn btn-primary btn-sm">Learn more about ASP.NET &raquo;</a>
+					</p>
                 </div>
 
                 <div className="row">
