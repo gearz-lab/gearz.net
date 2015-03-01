@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using Gearz.Code.Helpers;
+using Gearz.Core.Helpers;
 using Newtonsoft.Json;
 
-namespace Gearz.Code.Metadata
+namespace Gearz.Core.Metadata
 {
     /// <summary>
     /// Contains all metadata for an entity
@@ -68,6 +64,7 @@ namespace Gearz.Code.Metadata
         {
 
         }
+
         public PropertyMetadata Property(Expression<Func<TEntity, Object>> propertyExpression)
         {
             if (propertyExpression == null) throw new ArgumentNullException("propertyExpression");
@@ -76,6 +73,32 @@ namespace Gearz.Code.Metadata
             if (!this.Properties.ContainsKey(propertyName))
                 this.Properties.Add(propertyName, new PropertyMetadata<TEntity>(propertyExpression));
             return (PropertyMetadata<TEntity>)this.Properties[propertyName];
+        }
+    }
+
+    public static class Metadata
+    {
+        private static readonly List<IMetadataProvider> metadataProviders = new List<IMetadataProvider>();
+
+        public static void Register(IMetadataProvider metadataProvider)
+        {
+            lock (metadataProviders)
+                metadataProviders.Add(metadataProvider);
+        }
+
+        public static object GetMetadata()
+        {
+            lock (metadataProviders)
+            {
+                var metadataContext = new MetadataContext();
+
+                foreach (var metadataProvider in metadataProviders)
+                {
+                    metadataProvider.SetupMetadata(metadataContext);
+                }
+
+                metadataContext.
+            }
         }
     }
 }

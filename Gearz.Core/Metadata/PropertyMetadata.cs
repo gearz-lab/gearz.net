@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Gearz.Code.Helpers;
+using Gearz.Core.Helpers;
 
-namespace Gearz.Code.Metadata
+namespace Gearz.Core.Metadata
 {
     /// <summary>
     /// Metadata about a property

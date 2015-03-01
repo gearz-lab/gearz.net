@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Web;
-
-namespace Gearz.Code.Metadata
+﻿namespace Gearz.Core.Metadata
 {
     /// <summary>
     /// Represents a class able to provide matadata to a Gearz application
@@ -14,7 +8,7 @@ namespace Gearz.Code.Metadata
         /// <summary>
         /// Sets up the application metadata using the given metadata context
         /// </summary>
-        /// <param name="meta"></param>
-        void SetupMetadata(MetadataContext meta);
+        /// <param name="context"></param>
+        void SetupMetadata(MetadataContext context);
     }
 }

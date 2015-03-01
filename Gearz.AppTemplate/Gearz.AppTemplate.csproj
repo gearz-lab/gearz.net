@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Gearz</RootNamespace>
-    <AssemblyName>Gearz</AssemblyName>
+    <RootNamespace>Gearz.AppTemplate</RootNamespace>
+    <AssemblyName>Gearz.AppTemplate</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -178,9 +178,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Code\Helpers\MetadataHelper.cs" />
-    <Compile Include="Code\Helpers\TextExpressionHelper.cs" />
-    <Compile Include="Code\Metadata\Enums.cs" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -223,12 +220,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Code\Helpers\ExpressionHelper.cs" />
-    <Compile Include="Code\Metadata\EntityMetadata.cs" />
-    <Compile Include="Code\Metadata\FluentMetadataProvider.cs" />
-    <Compile Include="Code\Metadata\IMetadataProvider.cs" />
-    <Compile Include="Code\Metadata\MetadataContext.cs" />
-    <Compile Include="Code\Metadata\PropertyMetadata.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -287,6 +278,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Code\Helpers\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

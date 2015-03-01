@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Gearz.Code.Metadata;
+using Gearz.Core.Metadata;
 
-namespace Gearz.Code.Helpers
+namespace Gearz.Core.Helpers
 {
     /// <summary>
     /// Exposes methods to deal with metadata

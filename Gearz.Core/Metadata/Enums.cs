@@ -1,4 +1,4 @@
-﻿namespace Gearz.Code.Metadata
+﻿namespace Gearz.Core.Metadata
 {
     /// <summary>
     /// A property type, as the Type type cannot be represented in JavaScript
