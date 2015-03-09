@@ -93,11 +93,10 @@ namespace Gearz.Core.Metadata
                 var metadataContext = new MetadataContext();
 
                 foreach (var metadataProvider in metadataProviders)
-                {
                     metadataProvider.SetupMetadata(metadataContext);
-                }
 
-                metadataContext.
+                var result = metadataContext.GetJsonModel();
+                return result;
             }
         }
     }

@@ -49,10 +49,17 @@
     <Compile Include="Metadata\EntityMetadata.cs" />
     <Compile Include="Metadata\Enums.cs" />
     <Compile Include="Metadata\FluentMetadataProvider.cs" />
+    <Compile Include="Metadata\GroupMetadataBuilder.cs" />
+    <Compile Include="Metadata\GroupMetadataFluentBuilder.cs" />
+    <Compile Include="Metadata\IGroupItemMetadataBuilder.cs" />
     <Compile Include="Metadata\IGroupMetadataBuilder.cs" />
+    <Compile Include="Metadata\IMetadataBuilder.cs" />
     <Compile Include="Metadata\IMetadataProvider.cs" />
     <Compile Include="Metadata\MetadataContext.cs" />
+    <Compile Include="Metadata\MetadataFluentBuilder.cs" />
     <Compile Include="Metadata\PropertyMetadata.cs" />
+    <Compile Include="Metadata\PropertyMetadataBuilder.cs" />
+    <Compile Include="Metadata\UIContext.cs" />
     <Compile Include="Metadata\VirtualProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

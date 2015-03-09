@@ -12,8 +12,8 @@ namespace Gearz.Tests
                 .Editor("CollapsiblePanel");
 
             // COMPLEX EDIT PAGE
-            VirtualProperty<bool> vpHasPhone3;
-            context.EntityView<ComplexObjectSample>()
+            VirtualProperty<bool> hasPhone3;
+            context.EntityView<ComplexObjectViewModel>()
                 .Editor("MetaTabbedEditor")
                 .Property(
                     obj => obj.ChildObject,
@@ -30,14 +30,17 @@ namespace Gearz.Tests
                 // ALTERNATIVE: creating a virtual property... does not exist in the view-model class, but exists in the view-domain
                 .Property<bool>(
                     "HasPhone3",
-                    out vpHasPhone3,
+                    out hasPhone3,
                     p => p
                         .Display("Has third phone"))
 
                 .Group(
-                    grpPhones,
                     "Phones",
                     gcx => gcx
+                        .Template(grpPhones)
+
+                        .InvisibleWhen(p => !p.HasPhones)
+
                         // OPTIONAL: override the default editor of the group type
                         .Editor("CustomPhonesCollapsiblePanel")
 
@@ -61,35 +64,25 @@ namespace Gearz.Tests
                         .Property(
                             proc => proc.Phone3,
                             spcx => spcx
-                                .InvisibleWhen(p => !vpHasPhone3.Value)) // strongly typed reference to virtual prop
+                                .InvisibleWhen(p => !hasPhone3.Value)) // strongly typed reference to virtual prop
 
                         .Property(proc => proc.Office.Phone)
 
-                        // referring the group-type by name... should it be possible?
                         .Group(
-                            "GrpPhones",
                             "SecondaryPhones",
                             sgcx => sgcx
+                                // referring the group-template by name... should it be possible?
+                                .Template("GrpPhones")
                                 .Display("Other phones")
                                 .Hint("collapsed", true)
                                 .Property(proc => proc.Office.SecondaryPhone)
+
+                                .Property<int>(
+                                    "some",
+                                    pm => pm
+                                        .InvisibleWhen((pv, c) => pv.Phone3 != 0 && c.Value.Phone3 != null))
                         )
                 );
         }
-    }
-
-    public class ComplexObjectSample
-    {
-        public object ChildObject { get; set; }
-        public object Phone1 { get; set; }
-        public object Phone2 { get; set; }
-        public object Phone3 { get; set; }
-        public Office Office { get; set; }
-    }
-
-    public class Office
-    {
-        public object Phone { get; set; }
-        public object SecondaryPhone { get; set; }
     }
 }
