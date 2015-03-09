@@ -71,7 +71,7 @@ namespace Gearz.Tests
                         .Group(
                             "SecondaryPhones",
                             sgcx => sgcx
-                                // referring the group-template by name... should it be possible?
+                                // referring to the group-template by name... should it be possible?
                                 .Template("GrpPhones")
                                 .Display("Other phones")
                                 .Hint("collapsed", true)

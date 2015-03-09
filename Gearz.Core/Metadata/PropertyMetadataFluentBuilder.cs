@@ -9,7 +9,7 @@ namespace Gearz.Core.Metadata
         private readonly PropertyMetadataBuilder<TProp, TParentUIContext> inner;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PropertyMetadataFluentBuilder{TProp}"/> class.
+        /// Initializes a new instance of the <see cref="PropertyMetadataFluentBuilder{TProp,TParentUIContext}"/> class.
         /// </summary>
         /// <param name="inner">
         /// The inner.

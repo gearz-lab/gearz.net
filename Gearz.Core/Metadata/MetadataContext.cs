@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Lambda2Js;
 
 namespace Gearz.Core.Metadata
 {
@@ -112,8 +113,7 @@ namespace Gearz.Core.Metadata
             Expression<Func<T, TParentUIContext, bool>> expr)
             where TParentUIContext : UIContext
         {
-            throw new NotImplementedException();
-            var exprStr = expr.ToString();
+            var exprStr = expr.CompileToJavascript();
             groupItemMetadataFluentBuilder.Hint("InvisibleWhen", exprStr);
             return groupItemMetadataFluentBuilder;
         }
@@ -123,8 +123,7 @@ namespace Gearz.Core.Metadata
             Expression<Func<T, bool>> expr)
             where TParentUIContext : UIContext
         {
-            throw new NotImplementedException();
-            var exprStr = expr.ToString();
+            var exprStr = expr.CompileToJavascript();
             groupItemMetadataFluentBuilder.Hint("InvisibleWhen", exprStr);
             return groupItemMetadataFluentBuilder;
         }
@@ -134,8 +133,7 @@ namespace Gearz.Core.Metadata
             Expression<Func<T, UIContext<T, TParentUIContext>, bool>> expr)
             where TParentUIContext : UIContext
         {
-            throw new NotImplementedException();
-            var exprStr = expr.ToString();
+            var exprStr = expr.CompileToJavascript();
             groupItemMetadataFluentBuilder.Hint("InvisibleWhen", exprStr);
             return groupItemMetadataFluentBuilder;
         }
@@ -145,8 +143,7 @@ namespace Gearz.Core.Metadata
             Expression<Func<T, bool>> expr)
             where TParentUIContext : UIContext
         {
-            throw new NotImplementedException();
-            var exprStr = expr.ToString();
+            var exprStr = expr.CompileToJavascript();
             groupItemMetadataFluentBuilder.Hint("InvisibleWhen", exprStr);
             return groupItemMetadataFluentBuilder;
         }
