@@ -1,22 +1,32 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using JetBrains.Annotations;
 
-namespace Gearz.Core.Metadata
+namespace Gearz.Core.Metadata.Builders
 {
+    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Classes have the same name.")]
+    public abstract class PropertyMetadataBuilder
+    {
+        internal PropertyMetadataBuilder()
+        {
+        }
+    }
+
+    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Classes have the same name.")]
     public class PropertyMetadataBuilder<TProp, TParentUIContext> : PropertyMetadataBuilder,
         IGroupItemMetadataBuilder<TProp, TParentUIContext>
-        where TParentUIContext : UIContext
+        where TParentUIContext : IUIContext
     {
         private readonly List<string> editorNames = new List<string>();
         private readonly Dictionary<string, List<object>> hints = new Dictionary<string, List<object>>();
 
-        private readonly List<Expression<Func<UIContext<TProp, TParentUIContext>, string>>> displayNames
-            = new List<Expression<Func<UIContext<TProp, TParentUIContext>, string>>>();
+        private readonly List<Expression<Func<IUIContext<TProp, TParentUIContext>, string>>> displayNames
+            = new List<Expression<Func<IUIContext<TProp, TParentUIContext>, string>>>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PropertyMetadataBuilder{TProp}"/> class.
+        /// Initializes a new instance of the <see cref="PropertyMetadataBuilder{TProp,TParentUIContext}"/> class.
         /// </summary>
         /// <param name="index"> The index of this property inside the parent group. </param>
         /// <param name="propertyName"> The property name of this property inside the parent group. </param>
@@ -58,7 +68,7 @@ namespace Gearz.Core.Metadata
         /// <param name="text">Text to display.</param>
         public void Display(string text)
         {
-            this.displayNames.Add(Expression.Lambda<Func<UIContext<TProp, TParentUIContext>, string>>(Expression.Constant(text)));
+            this.displayNames.Add(Expression.Lambda<Func<IUIContext<TProp, TParentUIContext>, string>>(Expression.Constant(text)));
         }
 
         /// <summary>
@@ -67,7 +77,7 @@ namespace Gearz.Core.Metadata
         /// A valid string is non-null nor empty string, without throwing errors.
         /// </summary>
         /// <param name="textBuilderExpression">Lambda expression that can build the text to display.</param>
-        public void Display(Expression<Func<UIContext<TProp, TParentUIContext>, string>> textBuilderExpression)
+        public void Display(Expression<Func<IUIContext<TProp, TParentUIContext>, string>> textBuilderExpression)
         {
             this.displayNames.Add(textBuilderExpression);
         }

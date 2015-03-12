@@ -7,7 +7,7 @@ namespace Gearz.Tests
         public override void SetupMetadata(MetadataContext context)
         {
             // defining a group type
-            var grpPhones = context.GroupType("GrpPhones")
+            var grpPhones = context.DeclareTemplate("GrpPhones")
                 .Display("Phones")
                 .Editor("CollapsiblePanel");
 
@@ -37,7 +37,7 @@ namespace Gearz.Tests
                 .Group(
                     "Phones",
                     gcx => gcx
-                        .Template(grpPhones)
+                        .UseTemplate(grpPhones)
 
                         .InvisibleWhen(p => !p.HasPhones)
 
@@ -46,7 +46,7 @@ namespace Gearz.Tests
 
                         // OPTIONAL: override the default display name of the group type
                         .Display("Phones ABCD")
-                        .SomeOtherAttribute("Xpto")
+                        .InvalidWhen(p => p.Phone1 == null && p.Phone2 != null)
                         .Hint("collapsed", false)
 
                         // adding child elements
@@ -72,7 +72,7 @@ namespace Gearz.Tests
                             "SecondaryPhones",
                             sgcx => sgcx
                                 // referring to the group-template by name... should it be possible?
-                                .Template("GrpPhones")
+                                .UseTemplate("GrpPhones")
                                 .Display("Other phones")
                                 .Hint("collapsed", true)
                                 .Property(proc => proc.Office.SecondaryPhone)

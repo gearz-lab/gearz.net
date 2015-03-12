@@ -8,8 +8,7 @@
         /// <summary>
         /// Sets up the application metadata using the given metadata context
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">The metadata context to be configured.</param>
         public abstract void SetupMetadata(MetadataContext context);
     }
 }
-

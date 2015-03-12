@@ -12,7 +12,7 @@ namespace Gearz.Tests
         public void TestMethod1()
         {
             Dictionary<string, object> x = new Dictionary<string, object>();
-            x.Add("teste", new {Name = "André", Age = 30});
+            x.Add("teste", new { Name = "André", Age = 30 });
             var y = JsonConvert.SerializeObject(x);
         }
 

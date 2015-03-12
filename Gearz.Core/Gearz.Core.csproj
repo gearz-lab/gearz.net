@@ -11,6 +11,7 @@
     <AssemblyName>Gearz.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,10 +31,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Lambda2Js">
+      <HintPath>..\packages\Lambda2Js.1.1.0\lib\portable-net403+sl50+win+wpa81+wp80\Lambda2Js.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1-beta1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.1.34.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Collections.Immutable.1.1.34-rc\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,25 +60,47 @@
     <Compile Include="Helpers\MetadataHelper.cs" />
     <Compile Include="Helpers\TextExpressionHelper.cs" />
     <Compile Include="JetBrains\Annotations.cs" />
+    <Compile Include="Metadata.Builders\TemplateEntityMetadataBuilder.cs" />
+    <Compile Include="Metadata.Builders\TemplateEntityMetadataFluentBuilder.cs" />
     <Compile Include="Metadata\EntityMetadata.cs" />
-    <Compile Include="Metadata\Enums.cs" />
+    <Compile Include="Metadata.Builders\EntityMetadataBuilder.cs" />
+    <Compile Include="Metadata.Builders\EntityMetadataFluentBuilder.cs" />
+    <Compile Include="Metadata\EntityViewMetadataJsonModel.cs" />
+    <Compile Include="Metadata.Builders\IEntityMetadataBuilder.cs" />
+    <Compile Include="Metadata\INamedGroupOrTemplate.cs" />
+    <Compile Include="Metadata\IUIContext.cs" />
+    <Compile Include="Metadata\MetadataJsonModel.cs" />
+    <Compile Include="Metadata\PropertyType.cs" />
     <Compile Include="Metadata\FluentMetadataProvider.cs" />
-    <Compile Include="Metadata\GroupMetadataBuilder.cs" />
-    <Compile Include="Metadata\GroupMetadataFluentBuilder.cs" />
-    <Compile Include="Metadata\IGroupItemMetadataBuilder.cs" />
-    <Compile Include="Metadata\IGroupMetadataBuilder.cs" />
-    <Compile Include="Metadata\IMetadataBuilder.cs" />
+    <Compile Include="Metadata.Builders\GroupMetadataBuilder.cs" />
+    <Compile Include="Metadata.Builders\GroupMetadataFluentBuilder.cs" />
+    <Compile Include="Metadata.Builders\IGroupItemMetadataBuilder.cs" />
+    <Compile Include="Metadata.Builders\IGroupItemMetadataFluentBuilderEx.cs" />
+    <Compile Include="Metadata.Builders\IGroupMetadataBuilderEx.cs" />
+    <Compile Include="Metadata.Builders\IGroupMetadataFluentBuilderEx.cs" />
+    <Compile Include="Metadata.Builders\IMetadataBuilderEx.cs" />
+    <Compile Include="Metadata.Builders\IMetadataFluentBuilder.cs" />
     <Compile Include="Metadata\IMetadataProvider.cs" />
+    <Compile Include="Metadata\Metadata.cs" />
     <Compile Include="Metadata\MetadataContext.cs" />
-    <Compile Include="Metadata\MetadataFluentBuilder.cs" />
+    <Compile Include="Metadata\MetadataExtensions.cs" />
+    <Compile Include="Metadata.Builders\MetadataFluentBuilder.cs" />
     <Compile Include="Metadata\PropertyMetadata.cs" />
-    <Compile Include="Metadata\PropertyMetadataBuilder.cs" />
+    <Compile Include="Metadata.Builders\PropertyMetadataBuilder.cs" />
+    <Compile Include="Metadata.Builders\PropertyMetadataFluentBuilder.cs" />
+    <Compile Include="Metadata.Builders\SubGroupMetadataBuilder.cs" />
+    <Compile Include="Metadata.Builders\SubGroupMetadataFluentBuilder.cs" />
+    <Compile Include="Metadata\RootUIContext.cs" />
     <Compile Include="Metadata\UIContext.cs" />
+    <Compile Include="Metadata\UnknownUIContext.cs" />
     <Compile Include="Metadata\VirtualProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ImmutableAdapters\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

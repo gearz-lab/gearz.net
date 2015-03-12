@@ -1,10 +1,22 @@
 using System;
 using System.Linq.Expressions;
 
-namespace Gearz.Core.Metadata
+namespace Gearz.Core.Metadata.Builders
 {
-    public interface IMetadataBuilder<T, TParentUIContext>
-        where TParentUIContext : UIContext
+    public interface IMetadataBuilderEx<T, TParentUIContext> :
+        IMetadataBuilder
+        where TParentUIContext : IUIContext
+    {
+        /// <summary>
+        /// Includes a text to display as a caption of this entity.
+        /// When multiple are added, the first one that can build a valid string is used.
+        /// A valid string is non-null nor empty string, without throwing errors.
+        /// </summary>
+        /// <param name="textBuilderExpression">Lambda expression that can build the text to display.</param>
+        void Display(Expression<Func<IUIContext<T, TParentUIContext>, string>> textBuilderExpression);
+    }
+
+    public interface IMetadataBuilder
     {
         /// <summary>
         /// Includes a text to display as a caption of this entity.
@@ -14,14 +26,6 @@ namespace Gearz.Core.Metadata
         /// </summary>
         /// <param name="text">Text to display.</param>
         void Display(string text);
-
-        /// <summary>
-        /// Includes a text to display as a caption of this entity.
-        /// When multiple are added, the first one that can build a valid string is used.
-        /// A valid string is non-null nor empty string, without throwing errors.
-        /// </summary>
-        /// <param name="textBuilderExpression">Lambda expression that can build the text to display.</param>
-        void Display(Expression<Func<UIContext<T, TParentUIContext>, string>> textBuilderExpression);
 
         /// <summary>
         /// Includes an editor name that can be used with this entity type.

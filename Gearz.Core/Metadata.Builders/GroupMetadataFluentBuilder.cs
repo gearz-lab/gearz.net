@@ -2,15 +2,22 @@ using System;
 using System.Linq.Expressions;
 using JetBrains.Annotations;
 
-namespace Gearz.Core.Metadata
+namespace Gearz.Core.Metadata.Builders
 {
+    /// <summary>
+    /// Metadata builder for groups allowing a fluent coding style.
+    /// </summary>
+    /// <typeparam name="T"> The type of the object that is in scope. </typeparam>
+    /// <typeparam name="TParentUIContext"> The type of the parent UI scope object. </typeparam>
+    /// <typeparam name="TSelf"> The type of the fluent metadata builder. </typeparam>
     public abstract class GroupMetadataFluentBuilder<T, TParentUIContext, TSelf> : MetadataFluentBuilder<T, TParentUIContext, TSelf>,
-        IGroupMetadataFluentBuilder<T, TParentUIContext, TSelf>
-        where TParentUIContext : UIContext
-        where TSelf : class
+        IGroupMetadataFluentBuilderEx<T, TParentUIContext, TSelf>,
+        INamedGroupOrTemplate
+        where TParentUIContext : IUIContext
+        where TSelf : GroupMetadataFluentBuilder<T, TParentUIContext, TSelf>
     {
         [NotNull]
-        private readonly IGroupMetadataBuilder<T, TParentUIContext> inner;
+        private readonly IGroupMetadataBuilderEx<T, TParentUIContext> inner;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GroupMetadataFluentBuilder{T,TParentUIContext,TSelf}"/> class.
@@ -18,7 +25,7 @@ namespace Gearz.Core.Metadata
         /// <param name="inner">
         /// The inner.
         /// </param>
-        public GroupMetadataFluentBuilder([NotNull] IGroupMetadataBuilder<T, TParentUIContext> inner)
+        public GroupMetadataFluentBuilder([NotNull] IGroupMetadataBuilderEx<T, TParentUIContext> inner)
             : base(inner)
         {
             if (inner == null)
@@ -30,22 +37,22 @@ namespace Gearz.Core.Metadata
         /// <summary>
         /// Includes a group template to metadata as defaults.
         /// </summary>
-        /// <param name="groupTypeName">Name of the group template to use.</param>
+        /// <param name="templateName">Name of the entity to use as template.</param>
         /// <returns>The original object that allows a fluent code style.</returns>
-        public TSelf Template(string groupTypeName)
+        public TSelf UseTemplate(string templateName)
         {
-            this.inner.Template(groupTypeName);
+            this.inner.Template(templateName);
             return this as TSelf;
         }
 
         /// <summary>
         /// Includes a group template to metadata as defaults.
         /// </summary>
-        /// <param name="groupType">A group template used as a pre-configuration of the group being created.</param>
+        /// <param name="template">A group template used as a pre-configuration of the group being created.</param>
         /// <returns>The original object that allows a fluent code style.</returns>
-        public TSelf Template(GroupTypeMetadataBuilder groupType)
+        public TSelf UseTemplate(INamedGroupOrTemplate template)
         {
-            this.inner.Template(groupType);
+            this.inner.Template(template);
             return this as TSelf;
         }
 
@@ -72,7 +79,7 @@ namespace Gearz.Core.Metadata
         /// <returns>The original object that allows a fluent code style.</returns>
         public TSelf Property<TProp>(
             Expression<Func<T, TProp>> expressionProperty,
-            Action<PropertyMetadataFluentBuilder<TProp, UIContext<TProp, TParentUIContext>>> actionRegisterProp)
+            Action<IPropertyMetadataFluentBuilder<TProp, IUIContext<TProp, TParentUIContext>>> actionRegisterProp)
         {
             this.inner.Property(expressionProperty, actionRegisterProp);
             return this as TSelf;
@@ -88,9 +95,22 @@ namespace Gearz.Core.Metadata
         /// <returns>The original object that allows a fluent code style.</returns>
         public TSelf Property<TProp>(
             string propertyName,
-            Action<PropertyMetadataFluentBuilder<TProp, UIContext<TProp, TParentUIContext>>> actionRegisterProp)
+            Action<IPropertyMetadataFluentBuilder<TProp, IUIContext<TProp, TParentUIContext>>> actionRegisterProp)
         {
             this.inner.Property(propertyName, actionRegisterProp);
+            return this as TSelf;
+        }
+
+        /// <summary>
+        /// Indicates that a property participates in the view,
+        /// and that the property is configured with the passed delegate (in a fluent coding style).
+        /// </summary>
+        /// <typeparam name="TProp">The type of the property.</typeparam>
+        /// <param name="propertyName">The name (or text expression) that identifies what property appears in the view.</param>
+        /// <returns>The original object that allows a fluent code style.</returns>
+        public TSelf Property<TProp>(string propertyName)
+        {
+            this.inner.Property<TProp>(propertyName);
             return this as TSelf;
         }
 
@@ -105,7 +125,7 @@ namespace Gearz.Core.Metadata
         public TSelf Property<TProp>(
             string propertyName,
             out VirtualProperty<TProp> virtualProperty,
-            Action<PropertyMetadataFluentBuilder<TProp, UIContext<TProp, TParentUIContext>>> actionRegisterProp)
+            Action<IPropertyMetadataFluentBuilder<TProp, IUIContext<TProp, TParentUIContext>>> actionRegisterProp)
         {
             this.inner.Property(propertyName, out virtualProperty, actionRegisterProp);
             return this as TSelf;
@@ -121,6 +141,11 @@ namespace Gearz.Core.Metadata
         {
             this.inner.Group(groupName, actionRegisterGroup);
             return this as TSelf;
+        }
+
+        string INamedGroupOrTemplate.Name
+        {
+            get { return this.inner.Name; }
         }
     }
 }

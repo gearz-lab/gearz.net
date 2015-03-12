@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace Gearz.Core.Metadata
+namespace Gearz.Core.Metadata.Builders
 {
     public sealed class EntityMetadataFluentBuilder<T> : GroupMetadataFluentBuilder<T, UIContext<T, RootUIContext>, EntityMetadataFluentBuilder<T>>
     {
