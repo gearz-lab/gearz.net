@@ -68,7 +68,9 @@ namespace Gearz.Core.Metadata.Builders
         /// <param name="text">Text to display.</param>
         public void Display(string text)
         {
-            this.displayNames.Add(Expression.Lambda<Func<IUIContext<TProp, TParentUIContext>, string>>(Expression.Constant(text)));
+            this.displayNames.Add(Expression.Lambda<Func<IUIContext<TProp, TParentUIContext>, string>>(
+                Expression.Constant(text),
+                Expression.Parameter(typeof(IUIContext<TProp, TParentUIContext>), "ctx")));
         }
 
         /// <summary>

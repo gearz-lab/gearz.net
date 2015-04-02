@@ -87,7 +87,10 @@ namespace Gearz.Core.Metadata.Builders
         /// <param name="text">Text to display.</param>
         public void Display(string text)
         {
-            this.DisplayNames.Add(Expression.Lambda<Func<IUIContext<T, TParentUIContext>, string>>(Expression.Constant(text)));
+            this.DisplayNames.Add(
+                Expression.Lambda<Func<IUIContext<T, TParentUIContext>, string>>(
+                    Expression.Constant(text),
+                    Expression.Parameter(typeof(IUIContext<T, TParentUIContext>), "ctx")));
         }
 
         /// <summary>
@@ -146,13 +149,32 @@ namespace Gearz.Core.Metadata.Builders
             PropertyMetadataBuilder propMeta;
             if (!this.properties.TryGetValue(propertyName, out propMeta))
             {
-                this.properties[propertyName] = propMeta = new PropertyMetadataBuilder<TProp, UIContext<TProp, TParentUIContext>>(index, propertyName);
+                this.properties[propertyName] = propMeta = new PropertyMetadataBuilder<TProp, IUIContext<TProp, TParentUIContext>>(index, propertyName);
                 this.ViewItems.Add(propMeta);
             }
 
             actionRegisterProp(
                 new PropertyMetadataFluentBuilder<TProp, IUIContext<TProp, TParentUIContext>>(
                     (PropertyMetadataBuilder<TProp, IUIContext<TProp, TParentUIContext>>)propMeta));
+        }
+
+        /// <summary>
+        /// Indicates that a property participates in the view,
+        /// and that the property is configured with the passed delegate (in a fluent coding style).
+        /// </summary>
+        /// <typeparam name="TProp">The type of the property.</typeparam>
+        /// <param name="propertyName">The name (or text expression) that identifies what property appears in the view.</param>
+        public void Property<TProp>(string propertyName)
+        {
+            var index = this.ViewItems.Count;
+
+            // getting the property with that name
+            PropertyMetadataBuilder propMeta;
+            if (!this.properties.TryGetValue(propertyName, out propMeta))
+            {
+                this.properties[propertyName] = propMeta = new PropertyMetadataBuilder<TProp, IUIContext<TProp, TParentUIContext>>(index, propertyName);
+                this.ViewItems.Add(propMeta);
+            }
         }
 
         /// <summary>
@@ -173,7 +195,7 @@ namespace Gearz.Core.Metadata.Builders
             PropertyMetadataBuilder propMeta;
             if (!this.properties.TryGetValue(propertyName, out propMeta))
             {
-                this.properties[propertyName] = propMeta = new PropertyMetadataBuilder<TProp, UIContext<TProp, TParentUIContext>>(index, propertyName);
+                this.properties[propertyName] = propMeta = new PropertyMetadataBuilder<TProp, IUIContext<TProp, TParentUIContext>>(index, propertyName);
                 this.ViewItems.Add(propMeta);
             }
 
@@ -223,13 +245,14 @@ namespace Gearz.Core.Metadata.Builders
             PropertyMetadataBuilder propMeta;
             if (!this.properties.TryGetValue(propertyName, out propMeta))
             {
-                this.properties[propertyName] = propMeta = new PropertyMetadataBuilder<TProp, UIContext<TProp, TParentUIContext>>(index, propertyName);
+                this.properties[propertyName] = propMeta = new PropertyMetadataBuilder<TProp, IUIContext<TProp, TParentUIContext>>(index, propertyName);
                 this.ViewItems.Add(propMeta);
             }
 
+            var propMetaGeneric = (PropertyMetadataBuilder<TProp, IUIContext<TProp, TParentUIContext>>)propMeta;
             actionRegisterProp(
                 new PropertyMetadataFluentBuilder<TProp, IUIContext<TProp, TParentUIContext>>(
-                    (PropertyMetadataBuilder<TProp, IUIContext<TProp, TParentUIContext>>)propMeta));
+                    propMetaGeneric));
         }
 
         /// <summary>
