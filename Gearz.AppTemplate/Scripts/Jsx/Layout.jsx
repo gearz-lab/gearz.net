@@ -1,4 +1,7 @@
-﻿var _LoginPartial = React.createClass({
+﻿import React from "react";
+import HeaderLink from "./HeaderLink";
+
+var _LoginPartial = React.createClass({
     render: function() {
         return (<span>_LoginPartial</span>);
     }
@@ -37,3 +40,5 @@ var Layout = React.createClass({
       );
     }
 });
+
+export default Layout;

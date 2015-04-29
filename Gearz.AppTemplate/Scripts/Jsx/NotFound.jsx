@@ -1,4 +1,6 @@
-﻿var NotFound = React.createClass({
+﻿import React from "react";
+
+var NotFound = React.createClass({
     render: function() {
         return this.props.layout(
 			<div className="row">
@@ -12,3 +14,5 @@
 		);
     }
 });
+
+export default NotFound;

@@ -1,4 +1,6 @@
-﻿var ContactPage = React.createClass({
+﻿import React from "react";
+
+var ContactPage = React.createClass({
     render: function() {
         var Layout = this.props.layout;
         var result = (
@@ -22,3 +24,5 @@
         return result;
     }
 });
+
+export default ContactPage;

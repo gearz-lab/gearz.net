@@ -1,4 +1,10 @@
-﻿var Application = React.createClass({
+﻿import React from "react";
+import HomePage from "./HomePage";
+import ContactPage from "./ContactPage";
+import NotFound from "./NotFound";
+import Layout from "./Layout";
+
+var Application = React.createClass({
     handleViewData: function(data) {
         for (var k in data)
             window.stores.viewData[k] = data[k];
@@ -10,6 +16,7 @@
             modVer = this.props.appState.Versions.module,
             appMeta = this.props.appMeta[appVer],
             viewData = this.props.viewData;
+
         return {
                 layout: React.createClass({
                     render: function() {
@@ -31,3 +38,5 @@
 		);
     }
 });
+
+export default Application;

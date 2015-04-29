@@ -1,4 +1,6 @@
-﻿var HeaderLink = React.createClass({
+﻿import React from "react";
+
+var HeaderLink = React.createClass({
     handleClick: function(e) {
         e.preventDefault();
         var viewData = {};
@@ -32,3 +34,5 @@
             >{this.props.data.title}</a>);
     }
 });
+
+export default HeaderLink;
