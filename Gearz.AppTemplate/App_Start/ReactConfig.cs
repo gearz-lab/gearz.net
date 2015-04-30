@@ -19,13 +19,7 @@ namespace Gearz
             // your components as well as all of their dependencies.
             // See http://reactjs.net/ for more information. Example:
             ReactSiteConfiguration.Configuration
-                .AddScript("~/Scripts/immutable.min.js")
-                .AddScript("~/Scripts/jsx/Application.jsx")
-                .AddScript("~/Scripts/jsx/Layout.jsx")
-                .AddScript("~/Scripts/jsx/NotFound.jsx")
-                .AddScript("~/Scripts/jsx/HeaderLink.jsx")
-                .AddScript("~/Scripts/jsx/HomePage.jsx")
-                .AddScript("~/Scripts/jsx/ContactPage.jsx");
+                .AddScript("~/Scripts/jsx/build/server.bundle.js");
         }
     }
 }

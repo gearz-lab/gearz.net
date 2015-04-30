@@ -1,0 +1,23 @@
+{
+  "author": "Miguel Angelo <masbicudo@gmail.com>",
+  "description": "Makes it easy to develop concise client/server web applications.",
+  "license": "GPLv2",
+  "name": "masb-app-factory",
+  "version": "0.0.1",
+  "main": "app.jsx",
+  "scripts": {
+    "build": "babel-node build.js",
+    "test": "karma start --single-run && npm run lint && npm run build"
+  },
+  "devDependencies": {
+    "babel": "^5.1.13",
+    "babel-core": "^5.1.13",
+    "babel-loader": "^5.0.0",
+    "child-process-promise": "^1.0.2",
+    "expose-loader": "^0.6.0",
+    "webpack": "^1.8.9"
+  },
+  "dependencies": {
+    "react": "^0.13.2"
+  }
+}

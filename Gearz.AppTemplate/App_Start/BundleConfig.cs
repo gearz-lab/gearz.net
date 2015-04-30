@@ -35,6 +35,10 @@ namespace Gearz
             bundles.Add(new ScriptBundle("~/bundles/immutable", "//cdn.jsdelivr.net/immutable.js/3.2.1/immutable.min.js")
                 .Include("~/Scripts/immutable.min.js"));
 
+            // Main Application
+            bundles.Add(new ScriptBundle("~/bundles/app")
+                .Include("~/Scripts/Jsx/build/client.bundle.js"));
+
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
 #if DEBUG

@@ -83,3 +83,8 @@ Uncommited.*
 Uncommited/
 packages/
 *.nupkg
+node_modules/
+**/.idea/
+**/node_modules/
+Gearz.AppTemplate/Scripts/Jsx/build/*
+Gearz.AppTemplate/Scripts/Jsx/.idea/*

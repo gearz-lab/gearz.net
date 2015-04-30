@@ -213,6 +213,11 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Jsx\entry-client.js" />
+    <Content Include="Scripts\Jsx\entry-server.js" />
+    <Content Include="Scripts\Jsx\app-pages.jsx" />
+    <Content Include="Scripts\Jsx\app.jsx" />
+    <Content Include="Scripts\Jsx\gearz-react-mixin.jsx" />
     <Content Include="Scripts\Jsx\Application.jsx" />
     <Content Include="Scripts\Jsx\ContactPage.jsx" />
     <Content Include="Scripts\Jsx\HomePage.jsx" />
@@ -227,6 +232,7 @@
     <Content Include="Scripts\gzRouting.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Jsx\package.json" />
     <None Include="Scripts\_references.js" />
     <Content Include="Views\web.config" />
     <Content Include="Web.config" />
@@ -240,7 +246,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomeController - Copy.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -298,7 +303,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Code\Helpers\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
