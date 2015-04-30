@@ -225,10 +225,6 @@
     <Content Include="Scripts\Jsx\HeaderLink.jsx" />
     <Content Include="Scripts\Jsx\NotFound.jsx" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\react-0.12.1.js" />
-    <Content Include="Scripts\react-0.12.1.min.js" />
-    <Content Include="Scripts\react-with-addons-0.12.1.js" />
-    <Content Include="Scripts\react-with-addons-0.12.1.min.js" />
     <Content Include="Scripts\gzRouting.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

@@ -28,8 +28,8 @@ namespace Gearz
                           "~/Content/site.css"));
 
             // REACT
-            bundles.Add(new ScriptBundle("~/bundles/react", "//cdnjs.cloudflare.com/ajax/libs/react/0.12.1/react-with-addons.js")
-                .Include("~/Scripts/react-with-addons-0.12.1.js"));
+            bundles.Add(new ScriptBundle("~/bundles/react", "//cdnjs.cloudflare.com/ajax/libs/react/0.13.2/react-with-addons.js")
+                .Include("~/Scripts/Jsx/node_modules/react/dist/react-with-addons.js"));
 
             // IMMUTABLE
             bundles.Add(new ScriptBundle("~/bundles/immutable", "//cdn.jsdelivr.net/immutable.js/3.2.1/immutable.min.js")
