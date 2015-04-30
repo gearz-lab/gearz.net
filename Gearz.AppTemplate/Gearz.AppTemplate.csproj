@@ -213,6 +213,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Jsx\build.js" />
     <Content Include="Scripts\Jsx\entry-client.js" />
     <Content Include="Scripts\Jsx\entry-server.js" />
     <Content Include="Scripts\Jsx\app-pages.jsx" />
@@ -220,6 +221,8 @@
     <Content Include="Scripts\Jsx\gearz-react-mixin.jsx" />
     <Content Include="Scripts\Jsx\app-router.jsx" />
     <Content Include="Scripts\Jsx\app-ui-update.jsx" />
+    <Content Include="Scripts\Jsx\webpack.dev.js" />
+    <Content Include="Scripts\Jsx\webpack.min.js" />
     <Content Include="Scripts\Jsx\window.jsx" />
     <Content Include="Scripts\Jsx\popstate.jsx" />
     <Content Include="Scripts\Jsx\Link.jsx" />
