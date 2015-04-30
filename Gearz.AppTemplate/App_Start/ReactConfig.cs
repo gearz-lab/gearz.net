@@ -20,6 +20,8 @@ namespace Gearz
             // See http://reactjs.net/ for more information. Example:
             ReactSiteConfiguration.Configuration
                 .AddScript("~/Scripts/jsx/build/server.bundle.js");
+
+            ReactSiteConfiguration.Configuration.AllowMsieEngine = false;
         }
     }
 }
