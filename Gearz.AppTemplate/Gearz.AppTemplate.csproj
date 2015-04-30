@@ -218,6 +218,11 @@
     <Content Include="Scripts\Jsx\app-pages.jsx" />
     <Content Include="Scripts\Jsx\app.jsx" />
     <Content Include="Scripts\Jsx\gearz-react-mixin.jsx" />
+    <Content Include="Scripts\Jsx\app-router.jsx" />
+    <Content Include="Scripts\Jsx\app-ui-update.jsx" />
+    <Content Include="Scripts\Jsx\window.jsx" />
+    <Content Include="Scripts\Jsx\popstate.jsx" />
+    <Content Include="Scripts\Jsx\Link.jsx" />
     <Content Include="Scripts\Jsx\Application.jsx" />
     <Content Include="Scripts\Jsx\ContactPage.jsx" />
     <Content Include="Scripts\Jsx\HomePage.jsx" />
